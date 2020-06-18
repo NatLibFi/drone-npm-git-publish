@@ -12,12 +12,16 @@ if test -n "$PACKAGE_LOCK_CHANGED";then
 
   echo "$GIT_SSH_KEY" > ssh_key
   chmod 0600 ssh_key
+  du -b ssh_key
 
   #git remote add origin $DRONE_GIT_SSH_URL
 
   git config core.sshCommand 'ssh -i ssh_key -o StrictHostKeyChecking=no'
+  echo 'set ssh command'
   git config user.name $GIT_USER_NAME
+  echo 'set user name'
   git config user.email $GIT_USER_EMAIL
+  echo 'set user email'
 
   git commit -a -m 'Update dependencies'
 
