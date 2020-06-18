@@ -10,6 +10,8 @@ PACKAGE_LOCK_CHANGED=`git diff --name-only HEAD | grep package-lock.json`
 if test -n "$PACKAGE_LOCK_CHANGED";then
   echo "Package lock has changed. Saving changes"
 
+  echo $PLUGIN_GIT_USER_NAME
+
   echo $PLUGIN_GIT_SSH_KEY > ssh_key
   chmod 0600 ssh_key
   echo '---'
@@ -24,7 +26,7 @@ if test -n "$PACKAGE_LOCK_CHANGED";then
 
   git commit -a -m 'Update dependencies'
   npm version patch
-  GIT_TRACE=2 git push --follow-tags remote $DRONE_COMMIT_BRANCH
+  git push --follow-tags remote $DRONE_COMMIT_BRANCH
 else
   echo "No changes"
 fi
