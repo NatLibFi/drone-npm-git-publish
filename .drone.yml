@@ -1,0 +1,27 @@
+---
+  kind: pipeline
+  type: docker
+  name: default
+  
+  steps:
+  - name: generate-tags
+    image: quay.io/natlibfi/drone-gen-tags
+  
+  
+  - name: docker
+    image: plugins/docker
+    settings:
+      repo: quay.io/natlibfi/drone-npm-git-push
+      registry: quay.io
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+  ---
+  kind: secret
+  name: docker_username
+  data: A4d8ojExqk4K9tqZe1xLBfSgUE+y52xvCcyRXe0yCHAGihBSjWkpqpnN44Rz2OOnBKo=
+  ---
+  kind: secret
+  name: docker_password
+  data: sstkF/+ZDMtD4Ku89z0EfYxeq/tjK1eqUMpl+ai8Wf+HeQjmKcaFqDT0+PUflijgDJ8e0h64zgysJ+8SAg3lgEpPZ5tPl66UHkzF7ox0PGz106xRrfB0xjxPFgI=
