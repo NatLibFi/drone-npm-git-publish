@@ -10,7 +10,7 @@ steps:
 - name: docker
   image: plugins/docker
   settings:
-    repo: quay.io/natlibfi/drone-npm-git-push
+    repo: quay.io/natlibfi/drone-npm-git-publish
     registry: quay.io
     username:
       from_secret: docker_username
