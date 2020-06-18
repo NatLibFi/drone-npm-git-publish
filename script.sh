@@ -10,8 +10,9 @@ PACKAGE_LOCK_CHANGED=`git diff --name-only HEAD | grep package-lock.json`
 if test -n "$PACKAGE_LOCK_CHANGED";then
   echo "Package lock has changed. Saving changes"
 
-  echo $PLUGIN_GIT_SSH_KEY | base64 -d > ssh_key
+  echo $PLUGIN_GIT_SSH_KEY
   chmod 0600 ssh_key
+  du -b ssh_key
 
   git remote add remote $DRONE_GIT_SSH_URL
 
