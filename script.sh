@@ -12,7 +12,6 @@ if test -n "$PACKAGE_LOCK_CHANGED";then
 
   echo $PLUGIN_GIT_SSH_KEY > ssh_key
   chmod 0600 ssh_key
-  du -b ssh_key
 
   git remote add remote $DRONE_GIT_SSH_URL
 

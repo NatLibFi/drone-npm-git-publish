@@ -1,4 +1,4 @@
-# Docker image for Drone to publish updates to NPM packages & Git
+# Docker image for Drone to publish NPM dependency updates to Git
 
 ## License and copyright
 
