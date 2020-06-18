@@ -10,9 +10,10 @@ PACKAGE_LOCK_CHANGED=`git diff --name-only HEAD | grep package-lock.json`
 if test -n "$PACKAGE_LOCK_CHANGED";then
   echo "Package lock has changed. Saving changes"
 
-  echo "$PLUGIN_GIT_SSH_KEY" > ssh_key
+  echo $PLUGIN_GIT_SSH_KEY > ssh_key
   chmod 0600 ssh_key
-  du -b ssh_key
+
+  git add remote $DRONE_GIT_SSH_URL
 
   git config core.sshCommand 'ssh -i ssh_key -o StrictHostKeyChecking=no'
   git config user.name $PLUGIN_GIT_USER_NAME
@@ -22,7 +23,7 @@ if test -n "$PACKAGE_LOCK_CHANGED";then
 
   npm version patch
 
-  git push --follow-tags origin $DRONE_COMMIT_BRANCH
+  git push --follow-tags remote $DRONE_COMMIT_BRANCH
 else
   echo "No changes"
 fi
