@@ -19,7 +19,8 @@ if test -n "$PACKAGE_LOCK_CHANGED";then
 
   git commit -a -m 'Update dependencies'
   npm version patch
-  GIT_SSH='ssh -i ssh_key -o StrictHostKeyChecking=no' git push -v --follow-tags remote $DRONE_COMMIT_BRANCH
+  GIT_SSH_COMMAND='/usr/bin/ssh -i ssh_key -o StrictHostKeyChecking=no' git push --follow-tags remote $DRONE_COMMIT_BRANCH
 else
   echo "No changes"
 fi
+
