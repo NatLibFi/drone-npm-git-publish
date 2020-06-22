@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo 'Updating dependencies...'
 
 npm install --package-lock-only
