@@ -3,6 +3,7 @@
 echo 'Updating dependencies...'
 
 npm install --package-lock-only
+echo $?
 
 PACKAGE_LOCK_CHANGED=`git diff --name-only HEAD | grep package-lock.json`
 
@@ -22,7 +23,7 @@ if test -n "$PACKAGE_LOCK_CHANGED";then
     echo $PLUGIN_GIT_GPG_KEY | base64 -d | gpg --import -q  
     git config commit.gpgSign true
   fi
-
+  
   git commit -a -m 'Update dependencies'
   npm version patch
   
