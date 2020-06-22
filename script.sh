@@ -3,7 +3,7 @@ set -e
 
 echo 'Updating dependencies...'
 
-npm install --package-lock-only
+npm install --package-lock-only --no-audit
 
 PACKAGE_LOCK_CHANGED=`git diff --name-only HEAD | grep package-lock.json`
 
